@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "npx jest",
+    "test:staged": "npx jest"
   },
   "keywords": [],
   "author": "",
@@ -23,6 +24,7 @@
     "jest": "^28.0.3",
     "lint-staged": "^12.4.1",
     "ts-jest": "^28.0.1",
+    "ts-node": "^10.7.0",
     "typescript": "^4.6.4"
   }
 }
