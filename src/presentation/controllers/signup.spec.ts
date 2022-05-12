@@ -1,4 +1,4 @@
-import { InvalidParamError } from '../errors/invalid-param-error copy 2'
+import { InvalidParamError } from '../errors/invalid-param-error'
 import { MissinParamError } from '../errors/missing-param-error'
 import { EmailValidator } from '../protocols/email-validator'
 import { SignUpController } from './signup'
@@ -96,5 +96,21 @@ describe('SignUp Controller', () => {
     const httpResponse = sut.handle(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
     expect(httpResponse.body).toEqual(new InvalidParamError('email'))
+  })
+
+  test('should call EmailValidator with correct email', () => {
+    const { sut, emailValidatorStub } = makeSut()
+    const isValidSpy = jest.spyOn(emailValidatorStub, 'isValid')
+    const httpRequest = {
+      body: {
+        name: 'any_name',
+        email: 'any_email@mail.com',
+        password: 'any_password',
+        passwordConfirmation: 'any_password'
+      }
+    }
+    sut.handle(httpRequest)
+    // ? Estamos testando se o isValidSpy está sendo chamado com o email passado
+    expect(isValidSpy).toHaveBeenCalledWith('any_email@mail.com')
   })
 })
