@@ -1,5 +1,5 @@
 import { MissinParamError, InvalidParamError } from '../errors/index'
-import { badRequest, serverError } from '../herpers/http-helper'
+import { badRequest, serverError } from '../helpers/http-helper'
 import { HttpRequest, HttpResponse, Controller, EmailValidator } from '../protocols/index'
 
 export class SignUpController implements Controller {
